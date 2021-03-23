@@ -1,16 +1,19 @@
 def partition_labels(s)
   a = {}
-  s = s.split('')
-  s.each_with_index do |t, i|
+  p = s.split('')
+  p.each_with_index do |t, i|
     a[t] = i
   end
-  a.keys.each do |t|
+  res = []
+  e = 0
+  start = 0
+  p.each_with_index do |t,i|
+    d = a[t]
+    e = [d, e].max
+    if i == e
+      res << i -  start + 1
+      start  = i + 1
+    end
   end
+  res
 end
-
-
-s = "ababcbacadefegdehijhklij"
-partition_labels(s)
-输出：[9,7,8]
-解释：
-划分结果为 "ababcbaca", "defegde", "hijhklij"。
